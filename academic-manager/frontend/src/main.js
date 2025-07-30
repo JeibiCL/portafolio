@@ -1,11 +1,23 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import './style.css'
+import { loadNavbar } from './components/navbar.js'
+import { loadFooter } from './components/footer.js'
+console.log('main.js cargado')
 
-createApp(App).mount('#app')
+document.addEventListener('DOMContentLoaded', () => {
+  loadNavbar()
+  loadFooter()
 
+  const loginBtn = document.getElementById('btn-login')
+  const registerBtn = document.getElementById('btn-register')
 
-const app = createApp(App);
-app.use(router);
-app.use(createPinia());
-app.mount('#app');
+  if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+      window.location.href = '/src/pages/login.html'
+    })
+  }
+
+  if (registerBtn) {
+    registerBtn.addEventListener('click', () => {
+      window.location.href = '/src/pages/register.html'
+    })
+  }
+})
