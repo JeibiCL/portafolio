@@ -1,0 +1,84 @@
+
+body {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #272828 ;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+h1 {
+  margin-top: 10px;
+  color: #eee;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  margin-bottom: 5px;
+}
+#contador, #puntos {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+#area-juego {
+  position: relative;
+  margin: 10px auto;
+  width: 90%;
+  max-width: 600px;
+  height: 400px;
+  border: 3px dashed #0d3b66;
+  background-color: #f0f4f8;
+  box-shadow: 0 4px 15px rgba(13, 59, 102, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.circulo {
+  width: 50px;
+  height: 50px;
+  background:  #f4a365;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: aparecer 0.3s forwards;
+  user-select: none;
+  outline: none;
+  text-decoration: none; 
+}
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.circulo:hover {
+  transform: scale(1.2);
+}
+
+button {
+  font-size: 18px;
+  padding: 12px 28px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: #0d3b66;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(13, 59, 102, 0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background-color: #07407a;
+}

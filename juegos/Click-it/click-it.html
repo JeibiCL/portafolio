@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Juego del Click</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logo.png">
+
+</head>
+<body>
+
+  <h1>¡Haz clic en los circulos!</h1>
+  <p id="contador">Tiempo restante: 10s</p>
+  <p id="puntos">Puntos: 0</p>
+  <button onclick="iniciarJuego()">Iniciar juego</button>
+
+  <div id="area-juego"></div>
+
+
+  <script>
+    let puntos = 0;
+    let tiempo = 10;
+    let intervalo;
+
+	const areaJuego= document.getElementById("area-juego")
+    const puntosTexto = document.getElementById("puntos");
+    const contadorTexto = document.getElementById("contador");
+
+    function iniciarJuego() {
+      puntos = 0;
+      tiempo = 10;puntosTexto.textContent = "Puntos: 0";
+      contadorTexto.textContent = "Tiempo restante: 10s";
+      areaJuego.innerHTML = "";
+
+      generarCirculo();
+
+      intervalo = setInterval(() => {
+        tiempo--;
+        contadorTexto.textContent = `Tiempo restante: ${tiempo}s`;
+
+        if (tiempo <= 0) {
+          clearInterval(intervalo);
+          areaJuego.innerHTML = "";
+          contadorTexto.textContent = "¡Tiempo terminado!";
+        }
+      }, 1000);
+    }
+function generarCirculo() {
+      if (tiempo <= 0) return;
+
+      const circulo = document.createElement("div");
+      circulo.classList.add("circulo");
+
+      const maxTop = areaJuego.clientHeight - 50;
+      const maxLeft = areaJuego.clientWidth - 50;
+
+      const top = Math.random() * maxTop;
+      const left = Math.random() * maxLeft;
+
+      circulo.style.top = `${top}px`;
+      circulo.style.left = `${left}px`;
+
+      circulo.addEventListener("click", () => {
+        puntos++;
+        puntosTexto.textContent = `Puntos: ${puntos}`;
+        circulo.remove();
+        generarCirculo(); 
+      });
+
+      areaJuego.appendChild(circulo);
+    }
+	
+    window.addEventListener("resize", () => {
+      if (tiempo > 0) {
+        const circuloActual = document.querySelector(".circulo");
+        if (circuloActual) {
+          circuloActual.remove();
+          generarCirculo();
+        }
+      }
+    });
+
+  </script>
+
+</body>
+</html>
