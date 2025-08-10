@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="style.css">
+		<title>AntiHackatón</title>
+	</head>
+	<body>
+		<header>
+			<h1>No sense</h1>
+		</header>
+		<main class="login-container">
+			<form class="login-form" id="loginForm">
+				<h2>Iniciar Sesion</h2>
+				<label for="usuario">Usuario</label>
+				<input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario" required>
+				<label for="clave">Contraseña</label>
+				<input type="password" id="clave" name="clave" placeholder="Ingrese su contraseña" required>
+				<button type="submit">Iniciar Sesion</button>
+			</form>
+		</main>
+
+		<script>
+			const form = document.getElementById('loginForm');
+			const mensaje = document.getElementById('mensaje');
+
+			form.addEventListener('submit', function(event){
+				event.preventDefault();
+
+				const usuario = document.getElementById('usuario').value.trim();
+				const clave = document.getElementById('clave').value.trim();
+				const usuarioPermitido = "ususario@uc.cl";
+
+				if (usuario !== usuarioPermitido) {
+					mensaje.style.color = "red";
+					mensaje.innerHTML = `El usuario no existe. Debe ingresar con usuario: <b>${usuarioPermitido}</b>`;
+				}
+				else {
+					const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+					let claveGenerada = "";
+					for (let i = 0; i < 8; i ++){
+						clveGenerada +=chars.charAt(Math.floor(Math.random()*chars.length));
+					}
+
+					mensaje.style.color= "green";
+					mensaje.innerHTML = `Bienvenido ${usuario}.<br>Tu clave generada es: <b>${claveGenerada}</b>`;
+				}
+			});
+		</script>
+	</body>
+</html>
